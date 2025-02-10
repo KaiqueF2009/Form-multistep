@@ -4,12 +4,13 @@ import {GrFormNext, GrFormPrevious} from 'react-icons/gr'
 import UserForm from './components/UserForm'
 import ReviewForm from './components/ReviewForm'
 import Thanks from './components/Thanks'
-
+import Steps from './components/Steps'
 // hooks
 
 import useForm from './hooks/useForm'
 
 import './App.css'
+
 
 function App() {
   
@@ -29,23 +30,15 @@ return(
   </p>
 </div>
 <div className='form-container'>
-<p>etapas</p>
+<Steps currentStep={currentStep}/>
 <form onSubmit={(e) => changeStep(currentStep + 1, e)}>
   <div className="input-container">{currentComponent}</div>
   <div className="actions">
-    <button type="button" onClick={()=> changeStep(currentStep - 1)}>
+    {!isFirstStep &&(<button type="button" onClick={()=> changeStep(currentStep - 1 )}>
+      <span>Voltar</span>
       <GrFormPrevious/>
-      <span>Voltar</span>
-    </button>
-    <button type="submit">
-      <span>Avançar</span>
-      <GrFormNext/>
-      </button>
-      {!isFirstStep &&(<button type="button">
-      <span>Voltar</span>
-      <GrFormNPrevious/>
       </button>)}
-      {!isLastStep?(
+      {!isLastStep? (
         <button type="submit">
         <span>Avançar</span>
         <GrFormNext/>
